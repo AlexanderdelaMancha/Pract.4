@@ -1,0 +1,43 @@
+<%- include("templates/encabezado")%>
+    <h1>Lista de usuarios</h1>
+    <div class="contenedor">
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre del producto</th>
+                    <th>descripcion</th>
+                    <th>precio</th>
+                    <th>Editar / Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= usuario.id_usuario %></td>
+                    <td><%= usuario.nom_usuario %></td>
+                    <td><%= usuario.cel_usuario %></td>
+                    <td><%= usuario.correo_usuario %></td>
+                    <td>
+                        <a href="/editarUsuario/<%= usuario.id_usuario%>"><button id="editar_usuario" class="editar_usuario" type="button">Editar</button></a> / 
+                        <a href="/borrarUsuario/<%= usuario.id_usuario%>"><button id="borrar_usuario" class="borrar_usuario" type="button">Borrar</button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/agregarUsuario"><button id="agregar_usuario" class="agregar_usuario" type="button">Agregar Usuario</button></a>
+    </div>
+    <div class="tarjetas">
+        <div class="tarjeta">
+            <div class="id">100</div>
+            <div>Francisco I. Madero<br>427 100 0001<br>frank@gmail.com<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto aut dolores officiis deserunt sit excepturi, est asperiores dolore commodi quas obcaecati corrupti dolorum ducimus necessitatibus assumenda voluptatem. In, odit at.</div>
+        </div>
+        <div class="tarjeta">
+            <div class="id">200<br>Francisco Villa</div>
+            <div>427 200 0001<br>pancho@villa.com<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dolorum ea facilis totam nemo quod commodi nihil qui repellendus neque aliquam quidem deleniti libero amet facere, quasi dicta, consequuntur dolore!</div>
+        </div>
+        <div class="tarjeta">
+            <div class="id">300<br>Emiliano Zapata</div>
+            <div>427 300 0001<br>emiliano@zapata.com<br>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat deserunt fugit soluta similique dignissimos totam nemo cumque, perferendis adipisci ratione laborum ullam minima, modi molestiae cum facere amet maiores corrupti?</div>
+        </div>
+    </div>
+<%- include("templates/pie")%>
