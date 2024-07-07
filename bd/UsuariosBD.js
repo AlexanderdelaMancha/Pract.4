@@ -17,7 +17,7 @@ class UsuarioBD extends ConectarBD{
         }
     }
     async mostrarUsuarios() {
-        const sql = "select * from usuarios;";
+        const sql = "select * from Usuarios;";
         try {
             await this.conectarMySql();
             const [usuarioMySql] = await this.conexion.execute(sql);
@@ -29,11 +29,11 @@ class UsuarioBD extends ConectarBD{
             console.error(sql);
         }
     }
-    async usuarioID(id) {
-        const sql = "select * from usuarios where id_usuario = "+id+";";
+    async UsuarioID(id) {
+        const sql = "select * from Usuarios where id_Usuario = "+id+";";
         try {
             await this.conectarMySql();
-            const [[usuario]] = await this.conexion.execute(sql);
+            const [[Usuario]] = await this.conexion.execute(sql);
             await this.cerrarConexion();
             console.log("Consulta correcta por id");
             return usuario;
@@ -42,7 +42,7 @@ class UsuarioBD extends ConectarBD{
             console.error(sql);
         }
     }
-    async editarUsuario(usuarioo){
+    async editarUsuario(Usuarioo){
         const sql = "update usuarios set nom_usuario = '"+usuarioo.nombre+"', cel_usuario = '"+usuarioo.celular+"', correo_usuario = '"+usuarioo.correo+"' where id_usuario= '"+usuarioo.id_usuario+"':";
         const sql1 = `update usuarios set nom_usuario ='${usuarioo.nombre}', cel_usuario ='${usuarioo.celular}', correo_usuario ='${usuarioo.correo}' where id_usuario ='${usuarioo.id_usuario}';`;
         try {
