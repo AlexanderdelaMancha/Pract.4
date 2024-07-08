@@ -29,4 +29,3 @@ class ConectarBD {
     }
 }
 module.exports=ConectarBD;
-// hola que hace :D

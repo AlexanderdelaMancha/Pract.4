@@ -1,79 +1,71 @@
 const ConectarBD = require("./ConectarBD");
 
-class UsuarioBD extends ConectarBD{
-    constructor(){
+class UsuarioBD extends ConectarBD {
+    constructor() {
         super();
     }
-    async nuevoUsuario(datosUsuario){
-        const sql="insert into usuarios values(null,'"+datosUsuario.nombre+"','"+datosUsuario.celular+"','"+datosUsuario.correo+"');";
+
+    async nuevoUsuario(datosUsuario) {
+        const sql = "INSERT INTO Usuarios (Nombre, Celular, Correo) VALUES (?, ?, ?)";
         try {
             await this.conectarMySql();
-            await this.conexion.execute(sql);
+            await this.conexion.execute(sql, [datosUsuario.nombre, datosUsuario.celular, datosUsuario.correo]);
             console.log("Crea un nuevo usuario");
             await this.cerrarConexion();
         } catch (error) {
-            console.error("Error al agregar un usuario nuevo: "+error)
-            console.error(sql);
+            console.error("Error al agregar un usuario nuevo: " + error);
         }
     }
+
     async mostrarUsuarios() {
-        const sql = "select * from Usuarios;";
+        const sql = "SELECT * FROM Usuarios;";
         try {
             await this.conectarMySql();
             const [usuarioMySql] = await this.conexion.execute(sql);
             await this.cerrarConexion();
             console.log("Se mostraron los datos correctamente");
-            return (usuarioMySql);
+            return usuarioMySql;
         } catch (error) {
-            console.error("Error al mostrar los datos: "+error);
-            console.error(sql);
+            console.error("Error al mostrar los datos: " + error);
         }
     }
+
     async UsuarioID(id) {
-        const sql = "select * from Usuarios where id_Usuario = "+id+";";
+        const sql = "SELECT * FROM Usuarios WHERE ID_Usuario = ?";
         try {
             await this.conectarMySql();
-            const [[Usuario]] = await this.conexion.execute(sql);
+            const [[usuario]] = await this.conexion.execute(sql, [id]);
             await this.cerrarConexion();
             console.log("Consulta correcta por id");
             return usuario;
         } catch (error) {
-            console.error("Error al consultar con id "+error);
-            console.error(sql);
+            console.error("Error al consultar con id " + error);
         }
     }
-    async editarUsuario(Usuarioo){
-        const sql = "update usuarios set nom_usuario = '"+usuarioo.nombre+"', cel_usuario = '"+usuarioo.celular+"', correo_usuario = '"+usuarioo.correo+"' where id_usuario= '"+usuarioo.id_usuario+"':";
-        const sql1 = `update usuarios set nom_usuario ='${usuarioo.nombre}', cel_usuario ='${usuarioo.celular}', correo_usuario ='${usuarioo.correo}' where id_usuario ='${usuarioo.id_usuario}';`;
+
+    async editarUsuario(usuario) {
+        const sql = "UPDATE Usuarios SET Nombre = ?, Celular = ?, Correo = ? WHERE ID_Usuario = ?";
         try {
             await this.conectarMySql();
-            await this.conexion.execute(sql1);
+            await this.conexion.execute(sql, [usuario.nombre, usuario.celular, usuario.correo, usuario.id_usuario]);
             await this.cerrarConexion();
-            console.log("Actualizacion correcto de usuario");
+            console.log("Actualización correcta de usuario");
         } catch (error) {
-            console.error("Error al actualizar el usuario: "+error);
-            console.error(sql1);
+            console.error("Error al actualizar el usuario: " + error);
         }
     }
-    async borrarUsuario(id){
-        const sql = "delete from usuarios where id_usuario = "+id+";";
+
+    async borrarUsuario(id) {
+        const sql = "DELETE FROM Usuarios WHERE ID_Usuario = ?";
         try {
             await this.conectarMySql();
-            await this.conexion.execute(sql);
+            await this.conexion.execute(sql, [id]);
             await this.cerrarConexion();
             console.log("Usuario eliminado");
         } catch (error) {
-            console.error("Error al eliminar el usuario: "+error);
-            console.error(sql);
+            console.error("Error al eliminar el usuario: " + error);
         }
     }
 }
 
-// async function prueba(){
-//     var usu = new UsuarioBD();
-//     await usu.nuevoUsuario();
-// }
-
-// prueba();
-
-module.exports=UsuarioBD;
+module.exports = UsuarioBD;

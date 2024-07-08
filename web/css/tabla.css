@@ -29,10 +29,10 @@
         border: 5px solid violet;
     }
     .id{
-        background-color: darkmagenta;
+        background-color: rgb(139, 0, 12);
     }
     .tarjeta div{
-        border: 1px solid violet;
+        border: 1px solid rebeccapurple;
         text-align: center;
     }
 }
@@ -42,21 +42,21 @@ h1 {
 }
 table {
     border-collapse: collapse;
-    border: 3px solid violet;
+    border: 3px solid rgb(111, 5, 5);
     width: 1150px;
 }
 th{
     padding: 10px;
-    background-color: blueviolet;
+    background-color: red;
     color:white;
 }
 td{
     padding: 10px;
     text-align: center;
-    border: 1px solid violet;
+    border: 1px solid rebeccapurple;
 }
 tr:nth-child(odd){
-    background-color: darkorchid;
+    background-color: red;
 }
 .contenedor{
     display: flexbox;
